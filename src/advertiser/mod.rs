@@ -1,11 +1,17 @@
+mod data;
+
+#[derive(Debug)]
 enum Classifier {
     Technology,
     Food,
     StartUp
 }
 
+#[derive(Debug)]
 struct Candidates<I,A> { advertisements: Vec<Advertisement<I,A>> }
 
+
+#[derive(Debug)]
 struct Advertisement<I,A> {
 
     ident: String,
@@ -15,6 +21,7 @@ struct Advertisement<I,A> {
 
 }
 
+#[derive(Debug)]
 struct DisplayInformation {
 
     /* { FIELDS } */

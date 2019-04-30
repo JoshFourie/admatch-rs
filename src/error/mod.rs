@@ -23,13 +23,15 @@ pub enum Repr {
 
 #[derive(Debug, Copy, Clone)]
 pub enum ErrorKind {
-    ExternalError
+    ExternalError,
+    TestingError
 }
 
 impl ErrorKind {
     pub fn as_str(&self) -> &'static str {
         match *self {
-            ErrorKind::ExternalError => "error originating externally to this crate"
+            ErrorKind::ExternalError => "error originating externally to this crate",
+            ErrorKind::TestingError => "function is implemented as a placeholder"
         }
     }
 }
@@ -43,6 +45,12 @@ pub struct CustomError {
 impl From<CustomError> for Error {
     fn from(e: CustomError) -> Self { 
         Self { repr: Repr::Custom(e) } 
+    }
+}
+
+impl From<ErrorKind> for Error {
+    fn from(e: ErrorKind) -> Self { 
+        Self { repr: Repr::Simple(e) } 
     }
 }
 
